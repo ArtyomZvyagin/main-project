@@ -20,6 +20,13 @@
         <label for="f">Женский</label><br>
         <input type="submit" value="Добавить">
     </form>
+
+    <form id="form-insert-group">
+    <input type="text" name="name" placeholder="введите название группы" required><br>
+    <input type="submit" value="Добавить">
+    </form>
+
+
     <div class="content">
     <?php
     require_once ("config.php");
@@ -48,6 +55,25 @@
     ?>
     </div>
 
+
+<!-- Вывод список групп на страницу -->
+<div class="group"> 
+        <?php
+        $connect = new mysqli(HOST, USER, PASSWORD, DB);
+        if($connect->connect_error){
+            exit("Ошибка подключения к БД: ".$connect->connect_error);
+
+        }
+        $connect->set_charset("utf8");
+        $sql = "SELECT * FROM `groups`";
+        $result = $connect -> query($sql);
+        while ($row = $result ->fetch_assoc()){
+            echo "<div>
+            $row[group_id], $row[title]</div>";
+        }
+        ?>
+    </div>
+    <!-- -->
     <div class="block"></div>
 
     <div class="message">
