@@ -1,24 +1,20 @@
 <?php
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
-$age = $_POST['age'];
-$gender = $_POST['gender'];
-
-require_once ("api/config.php");
-
+require_once ("config.php");
 //соединение с БД
 $connect = new mysqli(HOST, USER, PASSWORD, DB);
 if($connect->connect_error){
  exit("Ошибка подключения к БД: ".$connect->connect_error);
 }
-
 //установить кодировку
 $connect->set_charset("utf8");
 
-//код запроса
-$sql = "INSERT INTO `students`(`fname`, `lname`, `gender`, `age`) VALUES ('$fname', '$lname', '$gender', $age)";
+$id = $_GET['id'];
 
-//выполнение запроса
+
+$sql = "UPDATE `students` 
+SET `num_like`= `num_like` + 1
+WHERE `student_id` = $id";
+
 $result = $connect->query($sql);
 if($result){
     echo "ОК";
