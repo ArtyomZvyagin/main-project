@@ -7,6 +7,7 @@
     <title>Клиент-серверное приложение</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
+    <script defer src="fetch.js"></script>
 </head>
 <body>
 
@@ -84,6 +85,16 @@
     <div class="message">
         bgtnbthnbslt
     </div>
+
+
+    <form id="form-auth" method="POST" action="api/auth.php">
+        <input type="text" id="login" name="login" placeholder="Введите логин" require><br>
+        <input type="password" id="password" name="password" placeholder="Введите пароль" require><br>
+        <input type="submit" value="Войти">
+
+    </form>
+
+
 
 </body>
 </html>
